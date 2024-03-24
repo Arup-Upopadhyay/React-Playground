@@ -5,6 +5,7 @@ import {useDebounce} from '../';
 const useFetch = (url) => {
     const [data, setData] = useState(null);
     const [isFetchInProgress, setFetchStatus] = useState(false);
+    useDebounce(fetchRemoteData);
 
     const fetchRemoteData = useCallback(async () => {
         setFetchStatus(true);
@@ -13,7 +14,6 @@ const useFetch = (url) => {
         setFetchStatus(false);
     },[url]);
 
-    useDebounce(fetchRemoteData);
 
     return [data, isFetchInProgress];
 };

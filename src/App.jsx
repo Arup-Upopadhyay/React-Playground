@@ -4,7 +4,7 @@ import {useEffect} from 'react';
 function App() {
     const [state, execute] = useAsync(() => {
         return new Promise((resolve,reject) => {
-            2 === 1 ? resolve('Pappu pass hogaya'): reject('Pappu fail hogaya')
+            2 === 2 ? resolve('Pappu pass hogaya'): reject('Pappu fail hogaya')
         });
     });
 
