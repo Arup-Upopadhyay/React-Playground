@@ -5,15 +5,18 @@ import {useDebounce} from '../';
 const useFetch = (url) => {
     const [data, setData] = useState(null);
     const [isFetchInProgress, setFetchStatus] = useState(false);
-    useDebounce(fetchRemoteData);
-
     const fetchRemoteData = useCallback(async () => {
         setFetchStatus(true);
-        const response = await axios.get(url);
-        setData(response.data);
+        try {
+            const response = await axios.get(url);
+            setData(response.data);
+        }catch(err) {
+            
+        }
         setFetchStatus(false);
     },[url]);
 
+    useDebounce(fetchRemoteData);
 
     return [data, isFetchInProgress];
 };
